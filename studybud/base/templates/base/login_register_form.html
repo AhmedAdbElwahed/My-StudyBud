@@ -1,0 +1,76 @@
+<!-- Section: Design Block -->
+{% extends 'base.html' %}
+{% block content %}
+    <section class="text-center text-lg-start">
+
+        <!-- Jumbotron -->
+        <div class="container py-4" style="width: 50%;">
+            <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+                <div class="card-body p-5 shadow-5 text-center">
+                    <h2 class="fw-bold mb-5">Sign up now</h2>
+                    <form method="post" action="">
+                        {% csrf_token %}
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="username" name="username" class="form-control"/>
+                            <label class="form-label" for="username">Username</label>
+                        </div>
+
+                        <!-- Password input1 -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="password1" name="password1" class="form-control"/>
+                            <label class="form-label" for="password1">Password</label>
+                        </div>
+
+                        <!-- Password input2 -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="password2" name="password2" class="form-control"/>
+                            <label class="form-label" for="password2">Confirm password</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">
+                            Sign up
+                        </button>
+
+                        <!-- Error messages -->
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <span{% if message.tags %} class="{{ message.tags }}"{% endif %}
+                                                               style="color: red">{{ message }}</span>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>or sign up with:</p>
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-google"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+    </section>
+    <!-- Section: Design Block -->
+{% endblock %}

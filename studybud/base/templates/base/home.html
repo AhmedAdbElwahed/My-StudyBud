@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">BROWSE TOPICS</h5>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-8">
+                            <a href="{% url 'home' %}"><h5>All</h5></a>
+                        </div>
+                        <div class="col-4">
+                            <span class="badge bg-secondary">{{ rooms.count }}</span>
+                        </div>
+                    </div>
+                    {% for topic in topics_count %}
+                        <hr>
+                        <div class="row">
+                            <div class="col-8">
+                                <a href="{% url 'home' %}?q={{ topic.0 }}"><h5>{{ topic.0 }}</h5></a>
+                            </div>
+                            <div class="col-4">
+                                <span class="badge bg-secondary">{{ topic.1 }}</span>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="row mt-3">
+                <div class="col">
+                    <a href="{% url 'create-room' %}" class="btn btn-success btn-lg">
+                        <i class="fa-solid fa-plus"></i>
+                        Create Room
+                    </a>
+                </div>
+                <div class="col d-flex justify-content-end">
+        <span class="fw-bold"
+        >STUDY ROOMS <br/>
+          <span class="fw-normal">Total {{ rooms.count }} Room Found Near You</span>
+        </span>
+                </div>
+            </div>
+            <br/>
+            {% for room in rooms %}
+
+                <div class="card text-bg-light mb-3" style="">
+                    <div class="card-header">
+                        <img
+                                class="icon"
+                                src="https://img.freepik.com/free-vector/geometric-groovy-pattern_23-2148854270.jpg?w=2000"
+                                alt="pattern"
+                        />
+                        @<a href="{% url 'profile' room.host.id %}">{{ room.host.username }}</a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a class="text-decoration-none" href="{% url 'room' room.id %}">{{ room.name }}</a>
+                        </h5>
+                        <p class="card-text">{{ room.description }}</p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-1">
+
+                            </div>
+                        </div>
+                        <span>Posted: {{ room.created|timesince }} ago</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-4 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Activities</h5>
+                    {% for recent_activity in recent_activities %}
+                        <div style="border: solid 1px #cccccc; border-radius: 8px; margin-top: 10px;">
+                            <div class="row" style="padding: 3px">
+                                <div class="col">
+                                    <img class="icon"
+                                         src="https://img.freepik.com/free-vector/geometric-groovy-pattern_23-2148854270.jpg?w=2000"
+                                         alt="profile-image">
+                                    <a class="fw-bold text-decoration-none"
+                                       href="{% url 'profile' recent_activity.user.id %}">@{{ recent_activity.user }}</a>
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <span style="margin-right: 10px;">{{ recent_activity.updated|timesince }} ago</span>
+                                </div>
+                                <div style="padding: 5px 20px 0 50px">
+                                    <p>Posted on room "<strong>{{ recent_activity.room.name }}</strong>"</p>
+                                    <div style="background-color: #cccccc; border-radius: 8px; padding: 10px">
+                                        <p>{{ recent_activity }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

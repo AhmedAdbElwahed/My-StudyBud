@@ -1,0 +1,164 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top p-3 mb-3 border-bottom" style="background-color: #e3f2fd">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img
+                    src="{% static '/images/studybud-logo.png' %}"
+                    alt="Logo"
+                    width="30"
+                    height="24"
+                    class="d-inline-block align-text-top"
+            />
+            StudyBud</a
+        >
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% if  request.path  != '/login/' %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex navbar-nav me-auto mb-2 mb-lg-0" style="width: 50%;" role="search" method="get"
+                  action="{% url 'home' %}">
+                <input
+                        style="width: 100%;"
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Rooms"
+                        aria-label="Search"
+                        name="q"
+                />
+                {#        <button class="btn btn-outline-success" type="submit" style="margin-right: 10px">Search</button>#}
+            </form>
+        {% endif %}
+
+        <!-- %%%%%%%%%%%%%%%%%%%%55 -->
+        <div class="dropdown-start">
+            <a
+                    href="#"
+                    class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+            >
+                <img
+                        src="https://github.com/mdo.png"
+                        alt="mdo"
+                        class="rounded-circle"
+                        width="32"
+                        height="32"
+                />
+                @{{ request.user.username|default:"Unknown" }}
+
+
+            </a>
+            {% if request.user.is_authenticated == False %}
+                <ul class="dropdown-menu text-small" style="max-width: fit-content; margin-left: auto !important;">
+                    <li><a class="dropdown-item" href="{% url 'login' %}">Login in</a></li>
+                </ul>
+            {% else %}
+                <ul class="dropdown-menu text-small" style="max-width: fit-content; margin-left: auto !important;">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider"/>
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+                </ul>
+            {% endif %}
+        </div>
+        </div>
+
+    </div>
+</nav>
+
+{% comment %}
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div
+                    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+            >
+                <a
+                        href="/"
+                        class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+                >
+                    <img
+                            src="{% static '/images/studybud-logo.png' %}"
+                            alt="Logo"
+                            width="30"
+                            height="24"
+                            class="d-inline-block align-text-top"
+                    />
+                    StudyBud
+                </a>
+
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <ul
+                        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                >
+                    <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
+                    <li>
+                        <a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-2 link-body-emphasis">Customers</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-2 link-body-emphasis">Products</a>
+                    </li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input
+                            type="search"
+                            class="form-control"
+                            placeholder="Search..."
+                            aria-label="Search"
+                    />
+                </form>
+
+                <div class="dropdown text-end">
+                    <a
+                            href="#"
+                            class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <img
+                                src="https://github.com/mdo.png"
+                                alt="mdo"
+                                class="rounded-circle"
+                                width="32"
+                                height="32"
+                        />
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endcomment %}

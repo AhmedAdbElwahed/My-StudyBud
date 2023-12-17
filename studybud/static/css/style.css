@@ -1,0 +1,36 @@
+body {
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); 
+}
+
+
+.form-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* max-width: 70%; */
+    width: 50%;
+    border-radius: 8px;
+    background-color: aliceblue;
+    padding: 20px;
+}
+
+.icon {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    
+}
+
+.card , .form-container{
+    background: hsla(0, 0%, 100%, 0.55) !important;
+            backdrop-filter: blur(30px) !important;
+}
+
+
+.base-container {
+    margin-top: 80px;
+    padding: 0 50px;
+}
